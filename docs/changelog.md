@@ -1,6 +1,11 @@
 
 ## Changelog
 
+### 4.4.0
+* Added support for Switch system version 22.0.0 and 22.1.0.
+
+*Released on 2026-04-14*
+
 ### 4.3.0
 * Added support for Switch system version 21.2.0.
 
