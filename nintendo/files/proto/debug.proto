@@ -5,6 +5,16 @@ struct ApiCall {
 	pid pid;
 }
 
+struct ApiCallSummary {
+	string name;
+	uint32 limit_exceeded;
+	uint32 duration;
+	uint32 limit;
+	datetime start;
+	uint32 limit_exceeded_count;
+	uint32 total_count;
+}
+
 protocol Debug : 116 {
 	method enable_api_recorder() {}
 	method disable_api_recorder() {}
@@ -13,11 +23,15 @@ protocol Debug : 116 {
 		bool enabled;
 	}
 	
-	method get_api_calls(list<pid> pids, datetime unk1, datetime unk2) {
+	method get_api_calls(list<pid> pids, datetime start, datetime end) {
 		list<ApiCall> calls;
 	}
 	
 	method set_exclude_joined_matchmake_session;
 	method get_exclude_joined_matchmake_session;
-	method get_api_call_summary;
+	
+	method get_api_call_summary(pid pid, datetime start, datetime end, bool only_limit_exceeded) {
+		list<ApiCallSummary> summaries;
+	}
 }
+

@@ -31,6 +31,42 @@ class ApiCall(common.Structure):
 		stream.pid(self.pid)
 
 
+class ApiCallSummary(common.Structure):
+	def __init__(self):
+		super().__init__()
+		self.name = None
+		self.limit_exceeded = None
+		self.duration = None
+		self.limit = None
+		self.start = None
+		self.limit_exceeded_count = None
+		self.total_count = None
+	
+	def check_required(self, settings, version):
+		for field in ['name', 'limit_exceeded', 'duration', 'limit', 'start', 'limit_exceeded_count', 'total_count']:
+			if getattr(self, field) is None:
+				raise ValueError("No value assigned to required field: %s" %field)
+	
+	def load(self, stream, version):
+		self.name = stream.string()
+		self.limit_exceeded = stream.u32()
+		self.duration = stream.u32()
+		self.limit = stream.u32()
+		self.start = stream.datetime()
+		self.limit_exceeded_count = stream.u32()
+		self.total_count = stream.u32()
+	
+	def save(self, stream, version):
+		self.check_required(stream.settings, version)
+		stream.string(self.name)
+		stream.u32(self.limit_exceeded)
+		stream.u32(self.duration)
+		stream.u32(self.limit)
+		stream.datetime(self.start)
+		stream.u32(self.limit_exceeded_count)
+		stream.u32(self.total_count)
+
+
 class DebugProtocol:
 	METHOD_ENABLE_API_RECORDER = 1
 	METHOD_DISABLE_API_RECORDER = 2
@@ -86,13 +122,13 @@ class DebugClient(DebugProtocol):
 		logger.info("DebugClient.is_api_recorder_enabled -> done")
 		return enabled
 	
-	async def get_api_calls(self, pids, unk1, unk2):
+	async def get_api_calls(self, pids, start, end):
 		logger.info("DebugClient.get_api_calls()")
 		#--- request ---
 		stream = streams.StreamOut(self.settings)
 		stream.list(pids, stream.pid)
-		stream.datetime(unk1)
-		stream.datetime(unk2)
+		stream.datetime(start)
+		stream.datetime(end)
 		data = await self.client.request(self.PROTOCOL_ID, self.METHOD_GET_API_CALLS, stream.get())
 		
 		#--- response ---
@@ -102,6 +138,24 @@ class DebugClient(DebugProtocol):
 			raise ValueError("Response is bigger than expected (got %i bytes, but only %i were read)" %(stream.size(), stream.tell()))
 		logger.info("DebugClient.get_api_calls -> done")
 		return calls
+	
+	async def get_api_call_summary(self, pid, start, end, only_limit_exceeded):
+		logger.info("DebugClient.get_api_call_summary()")
+		#--- request ---
+		stream = streams.StreamOut(self.settings)
+		stream.pid(pid)
+		stream.datetime(start)
+		stream.datetime(end)
+		stream.bool(only_limit_exceeded)
+		data = await self.client.request(self.PROTOCOL_ID, self.METHOD_GET_API_CALL_SUMMARY, stream.get())
+		
+		#--- response ---
+		stream = streams.StreamIn(data, self.settings)
+		summaries = stream.list(ApiCallSummary)
+		if not stream.eof():
+			raise ValueError("Response is bigger than expected (got %i bytes, but only %i were read)" %(stream.size(), stream.tell()))
+		logger.info("DebugClient.get_api_call_summary -> done")
+		return summaries
 
 
 class DebugServer(DebugProtocol):
@@ -150,9 +204,9 @@ class DebugServer(DebugProtocol):
 		logger.info("DebugServer.get_api_calls()")
 		#--- request ---
 		pids = input.list(input.pid)
-		unk1 = input.datetime()
-		unk2 = input.datetime()
-		response = await self.get_api_calls(client, pids, unk1, unk2)
+		start = input.datetime()
+		end = input.datetime()
+		response = await self.get_api_calls(client, pids, start, end)
 		
 		#--- response ---
 		if not isinstance(response, list):
@@ -168,8 +222,18 @@ class DebugServer(DebugProtocol):
 		raise common.RMCError("Core::NotImplemented")
 	
 	async def handle_get_api_call_summary(self, client, input, output):
-		logger.warning("DebugServer.get_api_call_summary is not supported")
-		raise common.RMCError("Core::NotImplemented")
+		logger.info("DebugServer.get_api_call_summary()")
+		#--- request ---
+		pid = input.pid()
+		start = input.datetime()
+		end = input.datetime()
+		only_limit_exceeded = input.bool()
+		response = await self.get_api_call_summary(client, pid, start, end, only_limit_exceeded)
+		
+		#--- response ---
+		if not isinstance(response, list):
+			raise RuntimeError("Expected list, got %s" %response.__class__.__name__)
+		output.list(response, output.add)
 	
 	async def enable_api_recorder(self, *args):
 		logger.warning("DebugServer.enable_api_recorder not implemented")
@@ -185,5 +249,9 @@ class DebugServer(DebugProtocol):
 	
 	async def get_api_calls(self, *args):
 		logger.warning("DebugServer.get_api_calls not implemented")
+		raise common.RMCError("Core::NotImplemented")
+	
+	async def get_api_call_summary(self, *args):
+		logger.warning("DebugServer.get_api_call_summary not implemented")
 		raise common.RMCError("Core::NotImplemented")
 
