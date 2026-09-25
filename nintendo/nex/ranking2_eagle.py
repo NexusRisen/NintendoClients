@@ -26,6 +26,20 @@ class Ranking2CategorySetting(common.Structure):
 		self.max_seasons_to_go_back = None
 		self.score_order = None
 	
+	def __key(self):
+		return (self.min_score, self.max_score, self.lowest_rank, self.reset_month, self.reset_day, self.reset_hour, self.reset_mode, self.max_seasons_to_go_back, self.score_order, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['min_score', 'max_score', 'lowest_rank', 'reset_month', 'reset_day', 'reset_hour', 'reset_mode', 'max_seasons_to_go_back', 'score_order']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['min_score', 'max_score', 'lowest_rank', 'reset_month', 'reset_day', 'reset_hour', 'reset_mode', 'max_seasons_to_go_back', 'score_order']:
 			if getattr(self, field) is None:
@@ -76,6 +90,20 @@ class Ranking2ChartInfo(common.Structure):
 		self.attribute1 = None
 		self.attribute2 = None
 		self.quantities = None
+	
+	def __key(self):
+		return (self.create_time, self.index, self.category, self.season, self.bins_size, self.sampling_rate, self.score_order, self.estimate_length, self.estimate_highest_score, self.estimate_lowest_score, self.estimate_median_score, self.estimate_average_score, self.highest_bins_score, self.lowest_bins_score, self.bins_width, self.attribute1, self.attribute2, self.quantities, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['create_time', 'index', 'category', 'season', 'bins_size', 'sampling_rate', 'score_order', 'estimate_length', 'estimate_highest_score', 'estimate_lowest_score', 'estimate_median_score', 'estimate_average_score', 'highest_bins_score', 'lowest_bins_score', 'bins_width', 'attribute1', 'attribute2', 'quantities']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['create_time', 'index', 'category', 'season', 'bins_size', 'sampling_rate', 'score_order', 'estimate_length', 'estimate_highest_score', 'estimate_lowest_score', 'estimate_median_score', 'estimate_average_score', 'highest_bins_score', 'lowest_bins_score', 'bins_width', 'attribute1', 'attribute2', 'quantities']:
@@ -130,6 +158,20 @@ class Ranking2ChartInfoInput(common.Structure):
 		self.chart_index = None
 		self.seasons_to_go_back = None
 	
+	def __key(self):
+		return (self.chart_index, self.seasons_to_go_back, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['chart_index', 'seasons_to_go_back']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['chart_index', 'seasons_to_go_back']:
 			if getattr(self, field) is None:
@@ -151,6 +193,20 @@ class Ranking2CommonData(common.Structure):
 		self.username = None
 		self.mii = None
 		self.binary_data = None
+	
+	def __key(self):
+		return (self.username, self.mii, self.binary_data, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['username', 'mii', 'binary_data']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['username', 'mii', 'binary_data']:
@@ -175,6 +231,20 @@ class Ranking2EstimateScoreRankInput(common.Structure):
 		self.category = None
 		self.seasons_to_go_back = None
 		self.score = None
+	
+	def __key(self):
+		return (self.category, self.seasons_to_go_back, self.score, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['category', 'seasons_to_go_back', 'score']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['category', 'seasons_to_go_back', 'score']:
@@ -202,6 +272,20 @@ class Ranking2EstimateScoreRankOutput(common.Structure):
 		self.category = None
 		self.season = None
 		self.sampling_rate = None
+	
+	def __key(self):
+		return (self.rank, self.length, self.score, self.category, self.season, self.sampling_rate, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['rank', 'length', 'score', 'category', 'season', 'sampling_rate']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['rank', 'length', 'score', 'category', 'season', 'sampling_rate']:
@@ -235,6 +319,20 @@ class Ranking2GetByListParam(common.Structure):
 		self.sort_flags = None
 		self.option_flags = None
 		self.seasons_to_go_back = None
+	
+	def __key(self):
+		return (self.category, self.offset, self.length, self.sort_flags, self.option_flags, self.seasons_to_go_back, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['category', 'offset', 'length', 'sort_flags', 'option_flags', 'seasons_to_go_back']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['category', 'offset', 'length', 'sort_flags', 'option_flags', 'seasons_to_go_back']:
@@ -271,6 +369,20 @@ class Ranking2GetParam(common.Structure):
 		self.option_flags = 0
 		self.mode = 2
 		self.seasons_to_go_back = 0
+	
+	def __key(self):
+		return (self.unique_id, self.pid, self.category, self.offset, self.count, self.sort_flags, self.option_flags, self.mode, self.seasons_to_go_back, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['unique_id', 'pid', 'category', 'offset', 'count', 'sort_flags', 'option_flags', 'mode', 'seasons_to_go_back']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['category']:
@@ -309,6 +421,20 @@ class Ranking2Info(common.Structure):
 		self.num_entries = None
 		self.season = None
 	
+	def __key(self):
+		return (self.data, self.lowest_rank, self.num_entries, self.season, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['data', 'lowest_rank', 'num_entries', 'season']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['data', 'lowest_rank', 'num_entries', 'season']:
 			if getattr(self, field) is None:
@@ -337,6 +463,20 @@ class Ranking2RankData(common.Structure):
 		self.rank = None
 		self.score = None
 		self.common_data = Ranking2CommonData()
+	
+	def __key(self):
+		return (self.misc, self.unique_id, self.pid, self.rank, self.score, self.common_data, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['misc', 'unique_id', 'pid', 'rank', 'score', 'common_data']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['misc', 'unique_id', 'pid', 'rank', 'score']:
@@ -368,6 +508,20 @@ class Ranking2ScoreData(common.Structure):
 		self.category = None
 		self.score = None
 	
+	def __key(self):
+		return (self.misc, self.category, self.score, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['misc', 'category', 'score']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['misc', 'category', 'score']:
 			if getattr(self, field) is None:
@@ -390,6 +544,20 @@ class Ranking2EstimateMyScoreRankInput(common.Structure):
 		super().__init__()
 		self.category = None
 		self.seasons_to_go_back = None
+	
+	def __key(self):
+		return (self.category, self.seasons_to_go_back, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['category', 'seasons_to_go_back']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['category', 'seasons_to_go_back']:

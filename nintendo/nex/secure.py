@@ -13,6 +13,20 @@ class ConnectionData(common.Structure):
 		self.station = None
 		self.connection_id = None
 	
+	def __key(self):
+		return (self.station, self.connection_id, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['station', 'connection_id']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['station', 'connection_id']:
 			if getattr(self, field) is None:
@@ -32,6 +46,20 @@ class NintendoLoginData(common.Structure):
 	def __init__(self):
 		super().__init__()
 		self.token = None
+	
+	def __key(self):
+		return (self.token, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['token']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['token']:

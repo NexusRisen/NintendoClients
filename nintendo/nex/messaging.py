@@ -19,6 +19,20 @@ class MessageRecipient(common.Structure):
 		self.pid = None
 		self.gid = None
 	
+	def __key(self):
+		return (self.type, self.pid, self.gid, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['type', 'pid', 'gid']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['type', 'pid', 'gid']:
 			if getattr(self, field) is None:
@@ -48,6 +62,20 @@ class UserMessage(common.Data):
 		self.subject = None
 		self.sender_name = None
 		self.recipient = MessageRecipient()
+	
+	def __key(self):
+		return (self.id, self.parent_id, self.sender, self.reception_time, self.life_time, self.flags, self.subject, self.sender_name, self.recipient, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name', 'recipient']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name']:
@@ -84,6 +112,20 @@ class TextMessage(UserMessage):
 		super().__init__()
 		self.body = None
 	
+	def __key(self):
+		return (self.id, self.parent_id, self.sender, self.reception_time, self.life_time, self.flags, self.subject, self.sender_name, self.recipient, self.body, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name', 'recipient', 'body']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
+	
 	def check_required(self, settings, version):
 		for field in ['body']:
 			if getattr(self, field) is None:
@@ -102,6 +144,20 @@ class BinaryMessage(UserMessage):
 	def __init__(self):
 		super().__init__()
 		self.body = None
+	
+	def __key(self):
+		return (self.id, self.parent_id, self.sender, self.reception_time, self.life_time, self.flags, self.subject, self.sender_name, self.recipient, self.body, )
+	
+	def __hash__(self):
+		return hash(common.make_hashable(self.__key()))
+	
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name', 'recipient', 'body']:
+			if getattr(self, field) != getattr(other, field):
+				return False
+		return True
 	
 	def check_required(self, settings, version):
 		for field in ['body']:

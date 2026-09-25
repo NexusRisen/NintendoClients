@@ -1,7 +1,7 @@
 
 from nintendo.nex.errors import error_names, error_codes
 from nintendo.nex import settings, streams
-from typing import Self
+from typing import Any, Self
 
 import datetime
 import time
@@ -11,6 +11,14 @@ logger = logging.getLogger(__name__)
 
 
 ERROR_MASK = 1 << 31
+
+
+def make_hashable(value: Any) -> Any:
+	if isinstance(value, (list, tuple)):
+		return tuple(make_hashable(item) for item in value)
+	if isinstance(value, dict):
+		return tuple(sorted((key, make_hashable(item)) for key, item in value.items()))
+	return value
 
 
 class RMCError(Exception):
@@ -37,6 +45,17 @@ class Result:
 
 	def __init__(self, code: int = 0x10001):
 		self._code = code
+	
+	def __key(self) -> tuple:
+		return (self._code,)
+	
+	def __hash__(self) -> int:
+		return hash(make_hashable(self.__key()))
+	
+	def __eq__(self, other: object) -> bool:
+		if type(self) is not type(other):
+			return NotImplemented
+		return self._code == other._code
 	
 	def __str__(self):
 		return f"{self.name()} (0x{self.code():08X})"
@@ -131,6 +150,17 @@ class Structure:
 	
 	
 class Data(Structure):
+	def __key(self) -> tuple:
+		return ()
+
+	def __hash__(self) -> int:
+		return hash(make_hashable(self.__key()))
+
+	def __eq__(self, other: object) -> bool:
+		if type(self) is not type(other):
+			return NotImplemented
+		return True
+
 	def save(self, stream: "streams.StreamOut", version: int) -> None:
 		pass
 
@@ -145,6 +175,17 @@ class DataHolder:
 
 	def __init__(self):
 		self.data = Data()
+		
+	def __key(self) -> tuple:
+		return (self.data,)
+		
+	def __hash__(self) -> int:
+		return hash(make_hashable(self.__key()))
+		
+	def __eq__(self, other: object) -> bool:
+		if type(self) is not type(other):
+			return NotImplemented
+		return self.data == other.data
 		
 	def encode(self, stream: "streams.StreamOut"):
 		stream.string(self.data.__class__.__name__)
@@ -166,6 +207,17 @@ class DataHolder:
 		
 		
 class NullData(Data):
+	def __key(self) -> tuple:
+		return ()
+
+	def __hash__(self) -> int:
+		return hash(make_hashable(self.__key()))
+
+	def __eq__(self, other: object) -> bool:
+		if type(self) is not type(other):
+			return NotImplemented
+		return True
+
 	def load(self, stream: "streams.StreamIn", version: int) -> None: pass
 	def save(self, stream: "streams.StreamOut", version: int) -> None: pass
 DataHolder.register(NullData, "NullData")
@@ -184,6 +236,17 @@ class StationURL:
 	def __init__(self, scheme="prudp", **kwargs):
 		self.urlscheme = scheme
 		self.params = kwargs
+
+	def __key(self):
+		return (self.urlscheme, self.params)
+
+	def __hash__(self):
+		return hash(make_hashable(self.__key()))
+
+	def __eq__(self, other):
+		if type(self) is not type(other):
+			return NotImplemented
+		return self.urlscheme == other.urlscheme and self.params == other.params
 
 	def __repr__(self):
 		params = ";".join(
@@ -233,6 +296,17 @@ class DateTime:
 
 	def __init__(self, value: int):
 		self._value = value
+		
+	def __key(self) -> tuple:
+		return (self._value,)
+		
+	def __hash__(self) -> int:
+		return hash(make_hashable(self.__key()))
+		
+	def __eq__(self, other: object) -> bool:
+		if type(self) is not type(other):
+			return NotImplemented
+		return self._value == other._value
 		
 	def second(self) -> int: return self._value & 63
 	def minute(self) -> int: return (self._value >> 6) & 63
@@ -291,6 +365,17 @@ class ResultRange(Structure):
 	def __init__(self, offset: int = 0, size: int = 10):
 		self.offset = offset
 		self.size = size
+
+	def __key(self) -> tuple:
+		return (self.offset, self.size)
+
+	def __hash__(self) -> int:
+		return hash(make_hashable(self.__key()))
+
+	def __eq__(self, other: object) -> bool:
+		if type(self) is not type(other):
+			return NotImplemented
+		return self.offset == other.offset and self.size == other.size
 
 	def load(self, stream: "streams.StreamIn", version: int) -> None:
 		self.offset = stream.u32()
