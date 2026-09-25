@@ -44,11 +44,7 @@ class Gathering(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'owner', 'host', 'min_participants', 'max_participants', 'participation_policy', 'policy_argument', 'flags', 'state', 'description']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -93,11 +89,7 @@ class GatheringURLs(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['gid', 'urls']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['gid', 'urls']:
 			if getattr(self, field) is None:
@@ -129,11 +121,7 @@ class GatheringStats(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'flags', 'values']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'flags', 'values']:
 			if getattr(self, field) is None:
@@ -167,11 +155,7 @@ class Invitation(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['gid', 'guest', 'message']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['gid', 'guest', 'message']:
 			if getattr(self, field) is None:
@@ -206,11 +190,7 @@ class ParticipantDetails(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'name', 'message', 'participants']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'name', 'message', 'participants']:
 			if getattr(self, field) is None:
@@ -246,11 +226,7 @@ class DeletionEntry(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['gid', 'pid', 'reason']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['gid', 'pid', 'reason']:
 			if getattr(self, field) is None:
@@ -282,11 +258,7 @@ class MatchmakeParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['param']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -327,11 +299,7 @@ class MatchmakeSessionSearchCriteria(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['attribs', 'game_mode', 'min_participants', 'max_participants', 'matchmake_system', 'vacant_only', 'exclude_locked', 'exclude_non_host_pid', 'selection_method', 'vacant_participants', 'param', 'exclude_user_password', 'exclude_system_password', 'refer_gid', 'codeword', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		if settings["nex.version"] >= 30500:
 			pass
@@ -409,11 +377,7 @@ class MatchmakeSession(Gathering):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'owner', 'host', 'min_participants', 'max_participants', 'participation_policy', 'policy_argument', 'flags', 'state', 'description', 'game_mode', 'attribs', 'open_participation', 'matchmake_system', 'application_data', 'num_participants', 'progress_score', 'session_key', 'option', 'param', 'started_time', 'user_password', 'refer_gid', 'user_password_enabled', 'system_password_enabled', 'codeword']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def max_version(self, settings):
 		version = 0
 		if 30000 <= settings["nex.version"] < 40000:
@@ -538,11 +502,7 @@ class MatchmakeBlockListParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['options']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -573,11 +533,7 @@ class CreateMatchmakeSessionParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['session', 'additional_participants', 'gid_for_participation_check', 'options', 'join_message', 'num_participants']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['additional_participants', 'gid_for_participation_check', 'options', 'join_message', 'num_participants']:
 			if getattr(self, field) is None:
@@ -625,11 +581,7 @@ class JoinMatchmakeSessionParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['gid', 'participants', 'gid_for_participation_check', 'options', 'behavior', 'user_password', 'system_password', 'join_message', 'num_participants', 'extra_participants', 'block_list']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['gid', 'participants', 'gid_for_participation_check', 'options', 'behavior', 'user_password', 'system_password', 'join_message', 'num_participants', 'extra_participants']:
 			if getattr(self, field) is None:
@@ -693,11 +645,7 @@ class UpdateMatchmakeSessionParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['gid', 'modification_flags', 'attributes', 'open_participation', 'application_buffer', 'progress_score', 'param', 'started_time', 'user_password', 'game_mode', 'description', 'min_participants', 'max_participants', 'matchmake_system', 'participation_policy', 'policy_argument', 'codeword']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['gid', 'modification_flags', 'attributes', 'open_participation', 'application_buffer', 'progress_score', 'started_time', 'user_password', 'game_mode', 'description', 'min_participants', 'max_participants', 'matchmake_system', 'participation_policy', 'policy_argument', 'codeword']:
 			if getattr(self, field) is None:
@@ -765,11 +713,7 @@ class AutoMatchmakeParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['session', 'participants', 'gid_for_participation_check', 'options', 'join_message', 'num_participants', 'search_criteria', 'target_gids', 'block_list']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['participants', 'gid_for_participation_check', 'options', 'join_message', 'num_participants', 'search_criteria', 'target_gids']:
 			if getattr(self, field) is None:
@@ -815,11 +759,7 @@ class FindMatchmakeSessionByParticipantParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pids', 'options', 'block_list']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pids', 'options']:
 			if getattr(self, field) is None:
@@ -852,11 +792,7 @@ class FindMatchmakeSessionByParticipantResult(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'session']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid']:
 			if getattr(self, field) is None:
@@ -893,11 +829,7 @@ class PersistentGathering(Gathering):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'owner', 'host', 'min_participants', 'max_participants', 'participation_policy', 'policy_argument', 'flags', 'state', 'description', 'type', 'password', 'attribs', 'application_buffer', 'participation_start', 'participation_end', 'matchmake_session_count', 'num_participants']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['type', 'password', 'attribs', 'application_buffer', 'participation_start', 'participation_end', 'matchmake_session_count', 'num_participants']:
 			if getattr(self, field) is None:
@@ -941,11 +873,7 @@ class SimpleCommunity(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['gid', 'matchmake_session_count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['gid', 'matchmake_session_count']:
 			if getattr(self, field) is None:
@@ -976,11 +904,7 @@ class PlayingSession(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'gathering']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'gathering']:
 			if getattr(self, field) is None:
@@ -1013,11 +937,7 @@ class SimplePlayingSession(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'gid', 'game_mode', 'attribute']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'gid', 'game_mode', 'attribute']:
 			if getattr(self, field) is None:
@@ -1055,11 +975,7 @@ class MatchmakeRefereeRound(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'gid', 'state', 'personal_data_category', 'results']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['id', 'gid', 'state', 'personal_data_category', 'results']:
 			if getattr(self, field) is None:
@@ -1097,11 +1013,7 @@ class MatchmakeRefereeStartRoundParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['personal_data_category', 'gid', 'pids']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['personal_data_category', 'gid', 'pids']:
 			if getattr(self, field) is None:
@@ -1134,11 +1046,7 @@ class MatchmakeRefereeEndRoundParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['round_id', 'results']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['round_id', 'results']:
 			if getattr(self, field) is None:
@@ -1172,11 +1080,7 @@ class MatchmakeRefereePersonalRoundResult(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'personal_round_result_flag', 'round_win_loss', 'rating_change', 'buffer']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'personal_round_result_flag', 'round_win_loss', 'rating_change', 'buffer']:
 			if getattr(self, field) is None:
@@ -1227,11 +1131,7 @@ class MatchmakeRefereeStats(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unique_id', 'category', 'pid', 'recent_disconnection', 'recent_violation', 'recent_mismatch', 'recent_win', 'recent_loss', 'recent_draw', 'total_disconnect', 'total_violation', 'total_mismatch', 'total_win', 'total_loss', 'total_draw', 'rating_value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unique_id', 'category', 'pid', 'recent_disconnection', 'recent_violation', 'recent_mismatch', 'recent_win', 'recent_loss', 'recent_draw', 'total_disconnect', 'total_violation', 'total_mismatch', 'total_win', 'total_loss', 'total_draw', 'rating_value']:
 			if getattr(self, field) is None:
@@ -1290,11 +1190,7 @@ class MatchmakeRefereeStatsTarget(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'category']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'category']:
 			if getattr(self, field) is None:
@@ -1325,11 +1221,7 @@ class MatchmakeRefereeStatsInitParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['category', 'initial_rating']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['category', 'initial_rating']:
 			if getattr(self, field) is None:
@@ -1367,11 +1259,7 @@ class SimpleSearchObject(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'owner', 'attributes', 'metadata', 'community_id', 'community_code', 'datetime', 'liveliness_rate', 'liveliness_update_time']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def max_version(self, settings):
 		version = 0
 		if settings["nex.version"] >= 40000:
@@ -1435,11 +1323,7 @@ class SimpleSearchDateTimeAttribute(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['start_daytime', 'end_daytime', 'start_time', 'end_time', 'start_datetime', 'end_datetime']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['start_daytime', 'end_daytime', 'start_time', 'end_time', 'start_datetime', 'end_datetime']:
 			if getattr(self, field) is None:
@@ -1482,11 +1366,7 @@ class SimpleSearchParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'owner', 'conditions', 'community_code', 'range', 'datetime']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -1523,11 +1403,7 @@ class SimpleSearchCondition(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['value', 'operator']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['value', 'operator']:
 			if getattr(self, field) is None:

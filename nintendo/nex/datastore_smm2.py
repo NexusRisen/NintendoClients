@@ -134,11 +134,7 @@ class DataStoreChangeMetaCompareParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['comparison_flag', 'name', 'permission', 'delete_permission', 'period', 'meta_binary', 'tags', 'referred_count', 'data_type', 'status']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['comparison_flag', 'name', 'period', 'meta_binary', 'tags', 'referred_count', 'data_type', 'status']:
 			if getattr(self, field) is None:
@@ -197,11 +193,7 @@ class DataStoreChangeMetaParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'modifies_flag', 'name', 'permission', 'delete_permission', 'period', 'meta_binary', 'tags', 'update_password', 'referred_count', 'data_type', 'status', 'compare_param', 'persistence_target']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'modifies_flag', 'name', 'period', 'meta_binary', 'tags', 'update_password', 'referred_count', 'data_type', 'status']:
 			if getattr(self, field) is None:
@@ -263,11 +255,7 @@ class DataStoreChangeMetaParamV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'modifies_flag', 'name', 'permission', 'delete_permission', 'period', 'meta_binary', 'tags', 'update_password']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'modifies_flag', 'name', 'period', 'meta_binary', 'tags', 'update_password']:
 			if getattr(self, field) is None:
@@ -312,11 +300,7 @@ class DataStoreCompletePostParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'success']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'success']:
 			if getattr(self, field) is None:
@@ -347,11 +331,7 @@ class DataStoreCompletePostParamV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'success']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'success']:
 			if getattr(self, field) is None:
@@ -383,11 +363,7 @@ class DataStoreCompleteUpdateParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'version', 'success']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'version', 'success']:
 			if getattr(self, field) is None:
@@ -420,11 +396,7 @@ class DataStoreDeleteParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'update_password']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'update_password']:
 			if getattr(self, field) is None:
@@ -457,11 +429,7 @@ class DataStoreGetMetaParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'persistence_target', 'result_option', 'access_password']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -494,11 +462,7 @@ class DataStoreGetNewArrivedNotificationsParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['last_notification_id', 'limit']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['last_notification_id', 'limit']:
 			if getattr(self, field) is None:
@@ -528,11 +492,7 @@ class DataStoreGetNotificationUrlParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['previous_url']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['previous_url']:
 			if getattr(self, field) is None:
@@ -560,11 +520,7 @@ class DataStoreGetSpecificMetaParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_ids']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_ids']:
 			if getattr(self, field) is None:
@@ -592,11 +548,7 @@ class DataStoreGetSpecificMetaParamV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_ids']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_ids']:
 			if getattr(self, field) is None:
@@ -625,11 +577,7 @@ class DataStoreKeyValue(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['key', 'value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['key', 'value']:
 			if getattr(self, field) is None:
@@ -677,11 +625,7 @@ class DataStoreMetaInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'owner_id', 'size', 'name', 'data_type', 'meta_binary', 'permission', 'delete_permission', 'create_time', 'update_time', 'period', 'status', 'referred_count', 'refer_data_id', 'flag', 'referred_time', 'expire_time', 'tags', 'ratings']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'owner_id', 'size', 'name', 'data_type', 'meta_binary', 'create_time', 'update_time', 'period', 'status', 'referred_count', 'refer_data_id', 'flag', 'referred_time', 'expire_time', 'tags', 'ratings']:
 			if getattr(self, field) is None:
@@ -746,11 +690,7 @@ class DataStoreNotification(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['notification_id', 'data_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['notification_id', 'data_id']:
 			if getattr(self, field) is None:
@@ -781,11 +721,7 @@ class DataStoreNotificationV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['notification_id', 'data_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['notification_id', 'data_id']:
 			if getattr(self, field) is None:
@@ -817,11 +753,7 @@ class DataStorePasswordInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'access_password', 'update_password']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'access_password', 'update_password']:
 			if getattr(self, field) is None:
@@ -854,11 +786,7 @@ class DataStorePermission(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['permission', 'recipients']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -888,11 +816,7 @@ class DataStorePersistenceInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['owner_id', 'slot_id', 'data_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['owner_id', 'slot_id', 'data_id']:
 			if getattr(self, field) is None:
@@ -925,11 +849,7 @@ class DataStorePersistenceInitParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['persistence_id', 'delete_last_object']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -958,11 +878,7 @@ class DataStorePersistenceTarget(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['owner_id', 'persistence_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -994,11 +910,7 @@ class DataStorePrepareGetParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'lock_id', 'persistence_target', 'access_password', 'extra_data']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		if settings["nex.version"] >= 30500:
 			pass
@@ -1036,11 +948,7 @@ class DataStorePrepareGetParamV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'lock_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id']:
 			if getattr(self, field) is None:
@@ -1082,11 +990,7 @@ class DataStorePreparePostParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['size', 'name', 'data_type', 'meta_binary', 'permission', 'delete_permission', 'flag', 'period', 'refer_data_id', 'tags', 'rating_init_param', 'persistence_init_param', 'extra_data']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['size', 'name', 'data_type', 'meta_binary', 'flag', 'period']:
 			if getattr(self, field) is None:
@@ -1154,11 +1058,7 @@ class DataStorePreparePostParamV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['size', 'name', 'data_type', 'meta_binary', 'permission', 'delete_permission', 'flag', 'period', 'refer_data_id', 'tags', 'rating_init_param']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['size', 'name', 'flag', 'period', 'tags', 'rating_init_param']:
 			if getattr(self, field) is None:
@@ -1209,11 +1109,7 @@ class DataStorePrepareUpdateParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'size', 'update_password', 'extra_data']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'size', 'update_password', 'extra_data']:
 			if getattr(self, field) is None:
@@ -1248,11 +1144,7 @@ class DataStoreRateObjectParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['rating_value', 'access_password']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['rating_value', 'access_password']:
 			if getattr(self, field) is None:
@@ -1284,11 +1176,7 @@ class DataStoreRatingInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['total_value', 'count', 'initial_value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['total_value', 'count', 'initial_value']:
 			if getattr(self, field) is None:
@@ -1321,11 +1209,7 @@ class DataStoreRatingInfoWithSlot(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['slot', 'info']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['slot']:
 			if getattr(self, field) is None:
@@ -1362,11 +1246,7 @@ class DataStoreRatingInitParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['flag', 'internal_flag', 'lock_type', 'initial_value', 'range_min', 'range_max', 'period_hour', 'period_duration']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['flag', 'internal_flag', 'lock_type', 'initial_value', 'range_min', 'range_max', 'period_hour', 'period_duration']:
 			if getattr(self, field) is None:
@@ -1409,11 +1289,7 @@ class DataStoreRatingInitParamWithSlot(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['slot', 'param']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['slot']:
 			if getattr(self, field) is None:
@@ -1446,11 +1322,7 @@ class DataStoreRatingLog(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['is_rated', 'pid', 'rating_value', 'lock_expiration_time']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['is_rated', 'pid', 'rating_value', 'lock_expiration_time']:
 			if getattr(self, field) is None:
@@ -1485,11 +1357,7 @@ class DataStoreRatingTarget(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'slot']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'slot']:
 			if getattr(self, field) is None:
@@ -1522,11 +1390,7 @@ class DataStoreReqGetAdditionalMeta(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['owner_id', 'data_type', 'version', 'meta_binary']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['owner_id', 'data_type', 'version', 'meta_binary']:
 			if getattr(self, field) is None:
@@ -1564,11 +1428,7 @@ class DataStoreReqGetInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['url', 'headers', 'size', 'root_ca_cert', 'data_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['url', 'headers', 'size', 'root_ca_cert']:
 			if getattr(self, field) is None:
@@ -1613,11 +1473,7 @@ class DataStoreReqGetInfoV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['url', 'headers', 'size', 'root_ca_cert']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['url', 'headers', 'size', 'root_ca_cert']:
 			if getattr(self, field) is None:
@@ -1654,11 +1510,7 @@ class DataStoreReqGetNotificationUrlInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['url', 'key', 'query', 'root_ca_cert']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['url', 'key', 'query', 'root_ca_cert']:
 			if getattr(self, field) is None:
@@ -1696,11 +1548,7 @@ class DataStoreReqPostInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'url', 'headers', 'form', 'root_ca_cert']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'url', 'headers', 'form', 'root_ca_cert']:
 			if getattr(self, field) is None:
@@ -1740,11 +1588,7 @@ class DataStoreReqPostInfoV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'url', 'headers', 'form', 'root_ca_cert']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'url', 'headers', 'form', 'root_ca_cert']:
 			if getattr(self, field) is None:
@@ -1784,11 +1628,7 @@ class DataStoreReqUpdateInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['version', 'url', 'headers', 'form', 'root_ca_cert']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['version', 'url', 'headers', 'form', 'root_ca_cert']:
 			if getattr(self, field) is None:
@@ -1842,11 +1682,7 @@ class DataStoreSearchParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['search_target', 'owner_ids', 'owner_type', 'destination_ids', 'data_type', 'created_after', 'created_before', 'updated_after', 'updated_before', 'refer_data_id', 'tags', 'result_order_column', 'result_order', 'result_range', 'result_option', 'minimal_rating_frequency', 'use_cache', 'total_count_enabled', 'data_types']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -1910,11 +1746,7 @@ class DataStoreSearchResult(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['total_count', 'result', 'total_count_type']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['total_count', 'result', 'total_count_type']:
 			if getattr(self, field) is None:
@@ -1950,11 +1782,7 @@ class DataStoreSpecificMetaInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'owner_id', 'size', 'data_type', 'version']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'owner_id', 'size', 'data_type', 'version']:
 			if getattr(self, field) is None:
@@ -1994,11 +1822,7 @@ class DataStoreSpecificMetaInfoV1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'owner_id', 'size', 'data_type', 'version']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'owner_id', 'size', 'data_type', 'version']:
 			if getattr(self, field) is None:
@@ -2036,11 +1860,7 @@ class DataStoreTouchObjectParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'lock_id', 'access_password']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'lock_id', 'access_password']:
 			if getattr(self, field) is None:
@@ -2073,11 +1893,7 @@ class GetCoursesParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_ids', 'option']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_ids']:
 			if getattr(self, field) is None:
@@ -2106,8 +1922,7 @@ class GetCoursesEventParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -2133,11 +1948,7 @@ class SearchCommentsInOrderParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id']:
 			if getattr(self, field) is None:
@@ -2169,11 +1980,7 @@ class GetEventCourseGhostParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'time', 'count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'time', 'count']:
 			if getattr(self, field) is None:
@@ -2205,11 +2012,7 @@ class GetEventCourseHistogramParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id']:
 			if getattr(self, field) is None:
@@ -2239,11 +2042,7 @@ class GetUserOrCourseParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['code', 'user_option', 'course_option']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['code']:
 			if getattr(self, field) is None:
@@ -2276,11 +2075,7 @@ class GetUsersParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pids', 'option']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pids']:
 			if getattr(self, field) is None:
@@ -2315,11 +2110,7 @@ class RegisterUserParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['name', 'unk1', 'unk2', 'language', 'country', 'device_id']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['name', 'unk2', 'language', 'country', 'device_id']:
 			if getattr(self, field) is None:
@@ -2359,11 +2150,7 @@ class SearchCoursesPostedByParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'range', 'pids']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pids']:
 			if getattr(self, field) is None:
@@ -2397,11 +2184,7 @@ class SearchCoursesPositiveRatedByParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'count', 'pid']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['count', 'pid']:
 			if getattr(self, field) is None:
@@ -2435,11 +2218,7 @@ class SearchCoursesPlayedByParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'count', 'pid']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['count', 'pid']:
 			if getattr(self, field) is None:
@@ -2473,11 +2252,7 @@ class SearchCoursesEndlessModeParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'count', 'difficulty']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['count', 'difficulty']:
 			if getattr(self, field) is None:
@@ -2511,11 +2286,7 @@ class SearchCoursesFirstClearParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'option', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid']:
 			if getattr(self, field) is None:
@@ -2549,11 +2320,7 @@ class SearchCoursesBestTimeParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'option', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid']:
 			if getattr(self, field) is None:
@@ -2585,11 +2352,7 @@ class SearchCoursesEventParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -2616,11 +2379,7 @@ class SearchCoursesLatestParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -2650,11 +2409,7 @@ class SearchUsersPlayedCourseParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'option', 'count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'count']:
 			if getattr(self, field) is None:
@@ -2688,11 +2443,7 @@ class SearchUsersClearedCourseParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'option', 'count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'count']:
 			if getattr(self, field) is None:
@@ -2726,11 +2477,7 @@ class SearchUsersPositiveRatedCourseParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'option', 'count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'count']:
 			if getattr(self, field) is None:
@@ -2765,11 +2512,7 @@ class SearchCoursesPointRankingParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'range', 'difficulty', 'reject_regions']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['difficulty']:
 			if getattr(self, field) is None:
@@ -2805,11 +2548,7 @@ class SearchUsersUserPointParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['option', 'buffer', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['buffer']:
 			if getattr(self, field) is None:
@@ -2849,11 +2588,7 @@ class SyncUserProfileParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['username', 'unk1', 'unk2', 'unk3', 'country', 'unk4', 'unk5', 'unk_guid', 'unk6']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['username', 'unk2', 'unk3', 'country', 'unk4', 'unk5', 'unk_guid', 'unk6']:
 			if getattr(self, field) is None:
@@ -2898,11 +2633,7 @@ class GetWorldMapParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['ids', 'option']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['ids']:
 			if getattr(self, field) is None:
@@ -2932,11 +2663,7 @@ class SearchWorldMapPickUpParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['count']:
 			if getattr(self, field) is None:
@@ -2965,11 +2692,7 @@ class SearchWorldMapPlayedByParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2']:
 			if getattr(self, field) is None:
@@ -3000,11 +2723,7 @@ class BadgeInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2']:
 			if getattr(self, field) is None:
@@ -3051,11 +2770,7 @@ class CommentInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2', 'unk3', 'unk4', 'unk5', 'unk6', 'unk7', 'unk8', 'unk9', 'unk10', 'unk11', 'unk12', 'unk13', 'unk14', 'unk15', 'picture', 'unk16', 'unk17']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2', 'unk3', 'unk4', 'unk5', 'unk6', 'unk7', 'unk8', 'unk9', 'unk10', 'unk11', 'unk12', 'unk13', 'unk14', 'unk15', 'unk16', 'unk17']:
 			if getattr(self, field) is None:
@@ -3120,11 +2835,7 @@ class DeathPositionInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'x', 'y', 'is_subworld']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'x', 'y', 'is_subworld']:
 			if getattr(self, field) is None:
@@ -3162,11 +2873,7 @@ class CommentPictureReqGetInfoWithoutHeaders(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['url', 'data_type', 'unk1', 'unk2', 'filename']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['url', 'data_type', 'unk1', 'unk2', 'filename']:
 			if getattr(self, field) is None:
@@ -3228,11 +2935,7 @@ class CourseInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'code', 'owner_id', 'name', 'description', 'game_style', 'course_theme', 'upload_time', 'difficulty', 'tag1', 'tag2', 'unk1', 'clear_condition', 'clear_condition_magnitude', 'unk2', 'unk3', 'play_stats', 'ratings', 'unk4', 'time_stats', 'comment_stats', 'unk9', 'unk10', 'unk11', 'unk12', 'one_screen_thumbnail', 'entire_thumbnail']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'code', 'owner_id', 'name', 'description', 'game_style', 'course_theme', 'upload_time', 'difficulty', 'tag1', 'tag2', 'unk1', 'clear_condition', 'clear_condition_magnitude', 'unk2', 'unk3', 'play_stats', 'ratings', 'unk4', 'comment_stats', 'unk9', 'unk10', 'unk11', 'unk12']:
 			if getattr(self, field) is None:
@@ -3324,11 +3027,7 @@ class WorldMapInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'owner_id', 'unk1', 'thumbnail', 'worlds', 'levels', 'unk2', 'unk3', 'data_ids', 'unk4', 'unk5', 'unk6', 'unk7']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['id', 'owner_id', 'unk1', 'worlds', 'levels', 'unk2', 'unk3', 'data_ids', 'unk4', 'unk5', 'unk6', 'unk7']:
 			if getattr(self, field) is None:
@@ -3383,11 +3082,7 @@ class CourseTimeStats(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['first_completion', 'world_record_holder', 'world_record', 'upload_time']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['first_completion', 'world_record_holder', 'world_record', 'upload_time']:
 			if getattr(self, field) is None:
@@ -3423,11 +3118,7 @@ class EventCourseGhostInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['replay_file', 'time', 'pid']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['time', 'pid']:
 			if getattr(self, field) is None:
@@ -3465,11 +3156,7 @@ class EventCourseHistogram(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'unk1', 'unk2', 'unk3', 'values', 'medals', 'unk4']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data_id', 'unk1', 'unk2', 'unk3', 'values', 'medals', 'unk4']:
 			if getattr(self, field) is None:
@@ -3531,11 +3218,7 @@ class EventCourseInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data_id', 'name', 'description', 'game_style', 'course_theme', 'unk1', 'unk2', 'upload_time', 'get_info', 'unk3', 'unk4', 'unk5', 'one_screen_thumbnail', 'entire_thumbnail', 'end_time', 'unk6', 'unk7', 'unk8', 'unk9', 'best_time', 'unk10', 'medal_time', 'personal_ghost']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def max_version(self, settings):
 		version = 0
 		version = 1
@@ -3620,11 +3303,7 @@ class EventCourseStatusInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2', 'unk3']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2', 'unk3']:
 			if getattr(self, field) is None:
@@ -3660,11 +3339,7 @@ class EventCourseThumbnail(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['url', 'headers', 'filesize', 'root_ca_cert', 'filename']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['url', 'headers', 'filesize', 'root_ca_cert', 'filename']:
 			if getattr(self, field) is None:
@@ -3704,11 +3379,7 @@ class RelationObjectReqGetInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['url', 'data_type', 'size', 'unk', 'filename']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['url', 'data_type', 'size', 'unk', 'filename']:
 			if getattr(self, field) is None:
@@ -3745,11 +3416,7 @@ class ReqGetInfoHeadersInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['headers', 'expiration']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['headers', 'expiration']:
 			if getattr(self, field) is None:
@@ -3787,11 +3454,7 @@ class SyncUserProfileResult(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'username', 'unk1', 'unk2', 'unk3', 'country', 'unk4', 'unk5', 'unk6']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'username', 'unk2', 'unk3', 'country', 'unk4', 'unk5', 'unk6']:
 			if getattr(self, field) is None:
@@ -3860,11 +3523,7 @@ class UserInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'code', 'name', 'unk1', 'unk2', 'country', 'region', 'last_active', 'unk3', 'unk4', 'unk5', 'play_stats', 'maker_stats', 'endless_challenge_high_scores', 'multiplayer_stats', 'unk7', 'badges', 'unk8', 'unk9', 'unk10', 'unk11', 'unk12', 'unk13', 'unk14', 'unk15', 'unk16']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def max_version(self, settings):
 		version = 0
 		version = 1
@@ -3968,11 +3627,7 @@ class UnknownStruct1(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2', 'unk3', 'unk4']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2', 'unk3', 'unk4']:
 			if getattr(self, field) is None:
@@ -4007,11 +3662,7 @@ class UnknownStruct3(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2']:
 			if getattr(self, field) is None:
@@ -4042,11 +3693,7 @@ class UnknownStruct6(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2']:
 			if getattr(self, field) is None:

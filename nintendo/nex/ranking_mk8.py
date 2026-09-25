@@ -46,11 +46,7 @@ class RankingOrderParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['order_calc', 'group_index', 'group_num', 'time_scope', 'offset', 'count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -94,11 +90,7 @@ class RankingRankData(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'unique_id', 'rank', 'category', 'score', 'groups', 'param', 'common_data', 'update_time']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'unique_id', 'rank', 'category', 'score', 'groups', 'param', 'common_data']:
 			if getattr(self, field) is None:
@@ -150,11 +142,7 @@ class RankingResult(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data', 'total', 'since_time']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['data', 'total', 'since_time']:
 			if getattr(self, field) is None:
@@ -188,11 +176,7 @@ class RankingCachedResult(RankingResult):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['data', 'total', 'since_time', 'created_time', 'expired_time', 'max_length']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['created_time', 'expired_time', 'max_length']:
 			if getattr(self, field) is None:
@@ -225,11 +209,7 @@ class RankingStats(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['stats']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['stats']:
 			if getattr(self, field) is None:
@@ -262,11 +242,7 @@ class RankingScoreData(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['category', 'score', 'order', 'update_mode', 'groups', 'param']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['category', 'score', 'order', 'update_mode', 'groups', 'param']:
 			if getattr(self, field) is None:
@@ -306,11 +282,7 @@ class RankingChangeAttributesParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['flags', 'groups', 'param']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['flags', 'groups', 'param']:
 			if getattr(self, field) is None:
@@ -344,11 +316,7 @@ class CompetitionRankingInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'num_participants', 'team_scores']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['id', 'num_participants', 'team_scores']:
 			if getattr(self, field) is None:
@@ -381,11 +349,7 @@ class CompetitionRankingInfoGetParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['rank_order', 'range']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['rank_order']:
 			if getattr(self, field) is None:
@@ -422,11 +386,7 @@ class CompetitionRankingUploadScoreParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'season_id', 'unk3', 'score', 'team_id', 'team_score', 'is_first_upload', 'metadata']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['id', 'season_id', 'unk3', 'score', 'team_id', 'team_score', 'is_first_upload', 'metadata']:
 			if getattr(self, field) is None:

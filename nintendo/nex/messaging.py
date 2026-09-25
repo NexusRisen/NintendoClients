@@ -28,11 +28,7 @@ class MessageRecipient(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['type', 'pid', 'gid']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['type', 'pid', 'gid']:
 			if getattr(self, field) is None:
@@ -72,11 +68,7 @@ class UserMessage(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name', 'recipient']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name']:
 			if getattr(self, field) is None:
@@ -121,11 +113,7 @@ class TextMessage(UserMessage):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name', 'recipient', 'body']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['body']:
 			if getattr(self, field) is None:
@@ -154,11 +142,7 @@ class BinaryMessage(UserMessage):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['id', 'parent_id', 'sender', 'reception_time', 'life_time', 'flags', 'subject', 'sender_name', 'recipient', 'body']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['body']:
 			if getattr(self, field) is None:

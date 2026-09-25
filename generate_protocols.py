@@ -871,18 +871,12 @@ class CodeGenerator:
 		stream.write_line()
 
 	def generate_struct_eq(self, stream, struct):
-		fields = self.collect_struct_fields(struct)
 		stream.write_line("def __eq__(self, other):")
 		stream.indent()
 		stream.write_line("if type(self) is not type(other):")
 		stream.write_line("\treturn NotImplemented")
-		if fields:
-			stream.write_line("for field in %s:" %fields)
-			stream.write_line("\tif getattr(self, field) != getattr(other, field):")
-			stream.write_line("\t\treturn False")
-		stream.write_line("return True")
+		stream.write_line("return self.__key() == other.__key()")
 		stream.unindent()
-		stream.write_line()
 	
 	def collect_struct_fields(self, struct):
 		hierarchy = []

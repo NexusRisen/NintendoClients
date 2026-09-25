@@ -24,11 +24,7 @@ class AuthenticationInfo(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['token', 'ngs_version', 'token_type', 'server_version']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['token']:
 			if getattr(self, field) is None:
@@ -66,11 +62,7 @@ class RVConnectionData(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['main_station', 'special_protocols', 'special_station', 'server_time']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def max_version(self, settings):
 		version = 0
 		if settings["nex.version"] >= 30500:
@@ -119,11 +111,7 @@ class ValidateAndRequestTicketParam(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['platform', 'username', 'data', 'skip_version_check', 'nex_version', 'client_version']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['username', 'data', 'nex_version', 'client_version']:
 			if getattr(self, field) is None:
@@ -166,11 +154,7 @@ class ValidateAndRequestTicketResult(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'ticket', 'server_url', 'server_time', 'server_name', 'source_key']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'ticket', 'server_url', 'server_time', 'server_name', 'source_key']:
 			if getattr(self, field) is None:

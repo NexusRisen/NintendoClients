@@ -27,11 +27,7 @@ class NotificationEvent(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'type', 'param1', 'param2', 'text', 'param3', 'map']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def max_version(self, settings):
 		version = 0
 		if settings["nex.version"] >= 40000:

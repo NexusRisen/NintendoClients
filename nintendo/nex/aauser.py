@@ -22,11 +22,7 @@ class ApplicationInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['title_id', 'title_version']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['title_id', 'title_version']:
 			if getattr(self, field) is None:

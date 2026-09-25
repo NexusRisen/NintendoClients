@@ -30,11 +30,7 @@ class u8KeyValue(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['key', 'value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['key', 'value']:
 			if getattr(self, field) is None:
@@ -66,11 +62,7 @@ class u32KeyValue(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['key', 'value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['key', 'value']:
 			if getattr(self, field) is None:
@@ -102,11 +94,7 @@ class u64KeyValue(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['key', 'value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['key', 'value']:
 			if getattr(self, field) is None:
@@ -138,11 +126,7 @@ class StringKeyValue(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['key', 'value']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['key', 'value']:
 			if getattr(self, field) is None:
@@ -175,11 +159,7 @@ class NintendoNotificationEvent(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['type', 'pid', 'data']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['type', 'pid', 'data']:
 			if getattr(self, field) is None:
@@ -214,11 +194,7 @@ class NintendoNotificationEventGeneral(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['param1', 'param2', 'param3', 'text']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['param1', 'param2', 'param3', 'text']:
 			if getattr(self, field) is None:
@@ -256,11 +232,7 @@ class NintendoNotificationEventKeyValue(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['u8', 'u32', 'u64', 'string']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['u8', 'u32', 'u64', 'string']:
 			if getattr(self, field) is None:
@@ -299,11 +271,7 @@ class NintendoNotificationEventProfile(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['region', 'country', 'area', 'language', 'platform']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['region', 'country', 'area', 'language', 'platform']:
 			if getattr(self, field) is None:

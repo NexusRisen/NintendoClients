@@ -23,11 +23,7 @@ class AccountExtraInfo(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['local_friend_code', 'move_count', 'token']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['local_friend_code', 'move_count', 'token']:
 			if getattr(self, field) is None:
@@ -61,11 +57,7 @@ class FriendComment(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'comment', 'modified_at']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'comment', 'modified_at']:
 			if getattr(self, field) is None:
@@ -99,11 +91,7 @@ class FriendKey(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2']:
 			if getattr(self, field) is None:
@@ -135,11 +123,7 @@ class FriendMii(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'mii', 'modified_at']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'modified_at']:
 			if getattr(self, field) is None:
@@ -174,11 +158,7 @@ class FriendMiiList(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'mii', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2']:
 			if getattr(self, field) is None:
@@ -221,11 +201,7 @@ class FriendPersistentInfo(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'region', 'country', 'area', 'language', 'platform', 'game_key', 'message', 'message_updated', 'friended', 'last_online']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'region', 'country', 'area', 'language', 'platform', 'message', 'message_updated', 'friended', 'last_online']:
 			if getattr(self, field) is None:
@@ -276,11 +252,7 @@ class FriendPicture(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk', 'data', 'datetime']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk', 'data', 'datetime']:
 			if getattr(self, field) is None:
@@ -314,11 +286,7 @@ class FriendPresence(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'presence']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid']:
 			if getattr(self, field) is None:
@@ -351,11 +319,7 @@ class FriendRelationship(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'friend_code', 'is_complete']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'friend_code', 'is_complete']:
 			if getattr(self, field) is None:
@@ -389,11 +353,7 @@ class GameKey(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['title_id', 'title_version']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -425,11 +385,7 @@ class Mii(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['name', 'unk1', 'unk2', 'mii_data']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['name', 'unk1', 'unk2', 'mii_data']:
 			if getattr(self, field) is None:
@@ -467,11 +423,7 @@ class MiiList(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2', 'unk3', 'mii_datas']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2', 'unk3', 'mii_datas']:
 			if getattr(self, field) is None:
@@ -513,11 +465,7 @@ class MyProfile(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['region', 'country', 'area', 'language', 'platform', 'local_friend_code_seed', 'mac_address', 'serial_number']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['region', 'country', 'area', 'language', 'platform', 'local_friend_code_seed', 'mac_address', 'serial_number']:
 			if getattr(self, field) is None:
@@ -569,11 +517,7 @@ class NintendoPresence(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['changed_bit_flag', 'game_key', 'game_mode_description', 'join_availability_flag', 'matchmake_system_type', 'join_game_id', 'join_game_mode', 'owner_pid', 'join_group_id', 'application_data']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['changed_bit_flag', 'game_mode_description', 'join_availability_flag', 'matchmake_system_type', 'join_game_id', 'join_game_mode', 'owner_pid', 'join_group_id', 'application_data']:
 			if getattr(self, field) is None:
@@ -621,11 +565,7 @@ class PlayedGame(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['game_key', 'datetime']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['datetime']:
 			if getattr(self, field) is None:
@@ -658,11 +598,7 @@ class BlacklistedPrincipal(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['principal_info', 'game_key', 'since']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['since']:
 			if getattr(self, field) is None:
@@ -697,11 +633,7 @@ class Comment(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk', 'text', 'changed']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk', 'text', 'changed']:
 			if getattr(self, field) is None:
@@ -739,11 +671,7 @@ class FriendInfo(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['nna_info', 'presence', 'comment', 'befriended', 'last_online', 'unk']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['befriended', 'last_online', 'unk']:
 			if getattr(self, field) is None:
@@ -784,11 +712,7 @@ class FriendRequest(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['principal_info', 'message', 'sent']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['sent']:
 			if getattr(self, field) is None:
@@ -829,11 +753,7 @@ class FriendRequestMessage(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['friend_request_id', 'unk1', 'unk2', 'message', 'unk3', 'string', 'game_key', 'datetime', 'expires']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['friend_request_id', 'unk1', 'unk2', 'message', 'unk3', 'string', 'datetime', 'expires']:
 			if getattr(self, field) is None:
@@ -882,11 +802,7 @@ class MiiV2(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['name', 'unk1', 'unk2', 'data', 'datetime']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['name', 'data']:
 			if getattr(self, field) is None:
@@ -925,11 +841,7 @@ class NNAInfo(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['principal_info', 'unk1', 'unk2']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -963,11 +875,7 @@ class NintendoCreateAccountData(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['info', 'token', 'birthday', 'unk']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['token', 'birthday', 'unk']:
 			if getattr(self, field) is None:
@@ -1016,11 +924,7 @@ class NintendoPresenceV2(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['flags', 'is_online', 'game_key', 'unk1', 'message', 'unk2', 'unk3', 'game_server_id', 'unk4', 'pid', 'gathering_id', 'application_data', 'unk5', 'unk6', 'unk7']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		pass
 	
@@ -1079,11 +983,7 @@ class PersistentNotification(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['unk1', 'unk2', 'unk3', 'unk4', 'string']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['unk1', 'unk2', 'unk3', 'unk4', 'string']:
 			if getattr(self, field) is None:
@@ -1123,11 +1023,7 @@ class PrincipalBasicInfo(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'nnid', 'mii', 'unk']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'nnid']:
 			if getattr(self, field) is None:
@@ -1164,11 +1060,7 @@ class PrincipalPreference(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['show_online_status', 'show_current_title', 'block_friend_requests']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['show_online_status', 'show_current_title', 'block_friend_requests']:
 			if getattr(self, field) is None:
@@ -1202,11 +1094,7 @@ class PrincipalRequestBlockSetting(common.Data):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['pid', 'blocked']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['pid', 'blocked']:
 			if getattr(self, field) is None:

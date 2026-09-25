@@ -23,11 +23,7 @@ class ApiCall(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['name', 'time', 'pid']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['name', 'time', 'pid']:
 			if getattr(self, field) is None:
@@ -65,11 +61,7 @@ class ApiCallSummary(common.Structure):
 	def __eq__(self, other):
 		if type(self) is not type(other):
 			return NotImplemented
-		for field in ['name', 'limit_exceeded', 'duration', 'limit', 'start', 'limit_exceeded_count', 'total_count']:
-			if getattr(self, field) != getattr(other, field):
-				return False
-		return True
-	
+		return self.__key() == other.__key()
 	def check_required(self, settings, version):
 		for field in ['name', 'limit_exceeded', 'duration', 'limit', 'start', 'limit_exceeded_count', 'total_count']:
 			if getattr(self, field) is None:
